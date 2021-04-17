@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
-
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 
 android {
@@ -85,5 +85,8 @@ dependencies {
     // Navigation Graph
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 }
