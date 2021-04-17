@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">KSO</string>
 
-    <string name="departure">De %1$s à %2$s</string>
-    <string name="arrival">À %1$s à %2$s</string>
+    <string name="departure">De %1$s le %2$s à %3$s</string>
+    <string name="arrival">À %1$s le %2$s à %3$s</string>
     <string name="duration">%1$s \nmin</string>
 
 </resources>

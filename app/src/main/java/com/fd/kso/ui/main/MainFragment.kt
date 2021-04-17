@@ -55,14 +55,9 @@ class MainFragment : Fragment(), ItemClickInteractionListener {
     private fun setupUI() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
         adapter = MItemAdapter(arrayListOf(), this)
-//        binding.recyclerView.addItemDecoration(
-//                DividerItemDecoration(
-//                        binding.recyclerView.context,
-//                        (binding.recyclerView.layoutManager as LinearLayoutManager).orientation
-//                )
-//        )
         binding.recyclerView.adapter = adapter
     }
+
     private fun setupObservers() {
         viewModel.allItems.observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
