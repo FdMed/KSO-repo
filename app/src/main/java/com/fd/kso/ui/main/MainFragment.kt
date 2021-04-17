@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fd.kso.MyApplication
@@ -14,12 +16,12 @@ import com.fd.kso.R
 import com.fd.kso.data.model.MyItem
 import com.fd.kso.databinding.ActivityMainBinding
 import com.fd.kso.databinding.FragmentMainBinding
-import com.fd.kso.ui.adapters.ItemClickInteractionListener
 import com.fd.kso.ui.adapters.MItemAdapter
 import com.fd.kso.utils.Status
+import com.fd.kso.utils.Utils
 import javax.inject.Inject
 
-class MainFragment : Fragment(), ItemClickInteractionListener {
+class MainFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: MainViewmodel
@@ -50,11 +52,14 @@ class MainFragment : Fragment(), ItemClickInteractionListener {
 
     }
 
-
-
     private fun setupUI() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
-        adapter = MItemAdapter(arrayListOf(), this)
+        adapter = MItemAdapter(arrayListOf())
+        adapter.onItemClick = { item ->
+            val bundle = bundleOf(Utils.ITEM_BUNDLE_ARG to item)
+            Navigation.findNavController(binding.root)
+                    .navigate(R.id.action_listFragment_to_detailInfoFragment,bundle)
+        }
         binding.recyclerView.adapter = adapter
     }
 
@@ -90,10 +95,6 @@ class MainFragment : Fragment(), ItemClickInteractionListener {
     private fun displayProgressBar(visible: Boolean) {
         if (visible) binding.listProgressBar.visibility = View.VISIBLE
         else binding.listProgressBar.visibility = View.GONE
-    }
-
-
-    override fun onItemClickListener(id: String) {
     }
 
 

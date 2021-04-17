@@ -1,3 +1,7 @@
 package com.fd.kso.data.model
 
-data class Coordinate(val lat: Double, val lon: Double)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Coordinate(val lat: Double, val lon: Double) : Parcelable

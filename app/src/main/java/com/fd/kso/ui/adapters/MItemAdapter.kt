@@ -16,10 +16,11 @@ import com.fd.kso.utils.DateUtils
 import com.fd.kso.utils.Utils
 import com.fd.kso.utils.Utils.spanText
 
-class MItemAdapter(private val items: ArrayList<MyItem>, val context : ItemClickInteractionListener) : RecyclerView.Adapter<MItemAdapter.DataViewHolder>() {
+class MItemAdapter(private val items: ArrayList<MyItem>) : RecyclerView.Adapter<MItemAdapter.DataViewHolder>() {
+
+    var onItemClick: ((MyItem) -> Unit)? = null
 
     class DataViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         return DataViewHolder(
                 ItemListBinding.inflate(
@@ -32,31 +33,13 @@ class MItemAdapter(private val items: ArrayList<MyItem>, val context : ItemClick
 
     override fun getItemCount(): Int = items.size
 
-   /* override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-
-        val item = items[position]
-        //val departureToSpan = holder.itemView.context.getString(R.string.departure,item.departure.place,DateUtils.formatDateString(item.departure.datetime),DateUtils.formatDateTimeString(item.departure.datetime))
-        //val arrivalToSpanToSpan = holder.itemView.context.getString(R.string.departure,item.arrival.place,DateUtils.formatDateString(item.arrival.datetime),DateUtils.formatDateTimeString(item.arrival.datetime))
-
-        holder.binding.departure.text = parseDepartureData(holder, item, ::spanText)
-                //Utils.spanText(departureToSpan,item.departure.place, DateUtils.formatDateString(item.departure.datetime),DateUtils.formatDateTimeString(item.departure.datetime))
-        holder.binding.arrival.text = parseArrivalData(holder,item,::spanText)
-                //Utils.spanText(arrivalToSpanToSpan,item.arrival.place, DateUtils.formatDateString(item.arrival.datetime),DateUtils.formatDateTimeString(item.arrival.datetime))
-        holder.binding.duration.text = holder.itemView.context.getString(R.string.duration,DateUtils.secondsTominutes(item.details.duration_second))
-
-
-
-        //holder.binding.deleteBtn.setOnClickListener { context.onItemClickListener(books[position].isbn13) }
-    }*/
-
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val item = items[position]
         holder.binding.departure.text = parseDepartureData(holder, item, ::spanText)
         holder.binding.arrival.text = parseArrivalData(holder,item,::spanText)
         holder.binding.duration.text = holder.itemView.context.getString(R.string.duration,DateUtils.secondsTominutes(item.details.duration_second))
 
-
-        //holder.binding.deleteBtn.setOnClickListener { context.onItemClickListener(books[position].isbn13) }
+        holder.binding.root.setOnClickListener { onItemClick?.invoke(item) }
     }
 
     fun addItems(items: List<MyItem>) {
@@ -68,8 +51,7 @@ class MItemAdapter(private val items: ArrayList<MyItem>, val context : ItemClick
     }
 
     private fun parseDepartureData(holder: DataViewHolder, item : MyItem, spanText: (sapannableText : String, location : String, date: String, time: String) -> SpannableString) : SpannableString{
-        val departureToSpan =
-                holder.itemView.context.getString(R.string.departure,
+        val departureToSpan = holder.itemView.context.getString(R.string.departure,
                         item.departure.place,
                         DateUtils.formatDateString(item.departure.datetime),
                         DateUtils.formatDateTimeString(item.departure.datetime))
@@ -77,12 +59,10 @@ class MItemAdapter(private val items: ArrayList<MyItem>, val context : ItemClick
     }
 
     private fun parseArrivalData(holder: DataViewHolder, item : MyItem, spanText: (sapannableText : String, location : String, date: String, time: String) -> SpannableString) : SpannableString{
-        val departureToSpan =
-                holder.itemView.context.getString(R.string.arrival,
+        val departureToSpan = holder.itemView.context.getString(R.string.arrival,
                         item.arrival.place,
                         DateUtils.formatDateString(item.arrival.datetime),
                         DateUtils.formatDateTimeString(item.arrival.datetime))
-
         return spanText (departureToSpan, item.arrival.place, DateUtils.formatDateString(item.arrival.datetime),DateUtils.formatDateTimeString(item.arrival.datetime))
     }
 

@@ -1,6 +1,6 @@
 package com.fd.kso.di
 
-import com.fd.kso.data.ApiService
+import com.fd.kso.data.api.ApiService
 import com.fd.kso.utils.Utils
 import dagger.Module
 import dagger.Provides

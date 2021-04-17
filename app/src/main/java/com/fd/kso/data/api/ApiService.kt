@@ -1,4 +1,4 @@
-package com.fd.kso.data
+package com.fd.kso.data.api
 
 import com.fd.kso.data.model.MyItem
 import retrofit2.http.GET

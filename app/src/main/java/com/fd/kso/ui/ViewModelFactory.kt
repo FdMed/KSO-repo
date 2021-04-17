@@ -2,7 +2,7 @@ package com.fd.kso.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fd.kso.data.ApiService
+import com.fd.kso.data.api.ApiService
 import com.fd.kso.data.repositories.LocationRepository
 import com.fd.kso.ui.main.MainViewmodel
 

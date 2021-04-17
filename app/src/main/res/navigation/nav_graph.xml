@@ -8,7 +8,13 @@
         android:label="fragment_list" tools:layout="@layout/fragment_main"
         >
         <action android:id="@+id/action_listFragment_to_detailInfoFragment"
-            app:destination="@id/detailedInfoFragment"/>
+            app:destination="@id/detailedInfoFragment">
+            <argument
+                android:name= "ITEM_BUNDLE_KEY_ARG"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.fd.kso.data.model.MyItem" />
+        </action>
     </fragment>
 
 
