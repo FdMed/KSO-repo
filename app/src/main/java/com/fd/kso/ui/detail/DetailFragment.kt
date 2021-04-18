@@ -64,12 +64,20 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     private fun setupUI() {
         binding.departLocation.text = myItem?.departure?.place
-        binding.departLocationInfos.text = myItem?.departure?.datetime
+        binding.departLocationInfos.text =
+                getString(R.string.departure_value,myItem?.departure?.getFormattedDate(),myItem?.departure?.getFormattedTime())
         binding.arrivalLocation.text = myItem?.arrival?.place
-        binding.arrivalLocationInfos.text = myItem?.arrival?.datetime
+        binding.arrivalLocationInfos.text =
+                getString(R.string.departure_value,myItem?.arrival?.getFormattedDate(),myItem?.arrival?.getFormattedTime())
 
-        binding.durationValue.text = myItem?.details?.duration_second.toString()
-        binding.distanceValue.text = myItem?.details?.distance_m.toString()
+        if (myItem?.details?.duration_second != null ) {
+            binding.durationValue.text = getString(R.string.duration_inline, myItem?.details?.getFormattedDuration())
+        }
+        else {
+            binding.imageError.visibility = View.VISIBLE
+        }
+
+        binding.distanceValue.text = myItem?.details?.getDistanceKM()
         binding.co2Value.text = myItem?.details?.co2_emission.toString()
 
     }

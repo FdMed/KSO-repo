@@ -32,6 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/duration_text" />
+            <ImageView
+                android:id="@+id/error_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_error"
+                android:visibility="gone"
+                style="@style/duration_text" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

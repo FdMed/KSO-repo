@@ -145,6 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/duration_title"
+
                         app:layout_constraintBaseline_toBaselineOf="@+id/duration_value"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -172,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/primary_margin"
                         android:layout_marginTop="@dimen/primary_margin"
-                        android:layout_marginEnd="@dimen/primary_margin"
+                        android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
                         app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
@@ -200,6 +201,17 @@
                         app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
                         app:layout_constraintTop_toBottomOf="@+id/distance_value" />
 
+                    <ImageView
+                        android:id="@+id/image_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_error"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
+
                     <androidx.constraintlayout.widget.Barrier
                         android:id="@+id/vertical_barrier"
                         android:layout_width="wrap_content"
@@ -207,6 +219,8 @@
                         app:barrierDirection="end"
                         app:constraint_referenced_ids="duration_title_id,co2_emission,distance"
                         tools:layout_editor_absoluteX="395dp" />
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>

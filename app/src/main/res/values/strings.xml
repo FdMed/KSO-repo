@@ -4,6 +4,7 @@
     <string name="departure">De %1$s le %2$s à %3$s</string>
     <string name="arrival">À %1$s le %2$s à %3$s</string>
     <string name="duration">%1$s \nmin</string>
+    <string name="duration_inline">%1$s min</string>
 
     <string name="departure_title">Départ</string>
     <string name="arrival_title">Arrivée</string>
