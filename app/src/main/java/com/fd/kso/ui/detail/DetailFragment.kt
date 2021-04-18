@@ -71,7 +71,11 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
             binding.durationValue.text = getString(R.string.duration_inline, myItem?.details?.getFormattedDuration())
         else binding.imageError.visibility = View.VISIBLE
 
-        binding.distanceValue.text = myItem?.details?.getDistanceKM()
+        if (myItem?.details?.distance_m != null )
+            binding.distanceValue.text = myItem?.details?.getDistanceKM()
+        else binding.imageError2.visibility = View.VISIBLE
+
+
         binding.co2Value.text = myItem?.details?.co2_emission.toString()
     }
 
@@ -83,27 +87,31 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     private fun setupMarkers() {
         myItem?.run {
-            val departureLatLng = LatLng(departure.coord.lat, departure.coord.lon)
-            mMap.addMarker(MarkerOptions()
-                    .position(departureLatLng)
-                    .title(getString(R.string.departure_title))
-                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_departure_marker)))
+            ifLet(departure.coord?.lat,departure.coord?.lon, arrival.coord?.lat, arrival.coord?.lon) {
+                (depLat, depLon, arrLat, arrLon) ->
+                val departureLatLng = LatLng(depLat, depLon)
+                mMap.addMarker(MarkerOptions()
+                        .position(departureLatLng)
+                        .title(getString(R.string.departure_title))
+                        .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_departure_marker)))
 
-            val arrivalLatLng = LatLng(arrival.coord.lat, arrival.coord.lon)
-            mMap.addMarker(MarkerOptions()
-                    .position(arrivalLatLng)
-                    .title(getString(R.string.arrival_title))
-                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_arrival_marker)))
+                val arrivalLatLng = LatLng(arrLat, arrLon)
+                mMap.addMarker(MarkerOptions()
+                        .position(arrivalLatLng)
+                        .title(getString(R.string.arrival_title))
+                        .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_arrival_marker)))
 
-            val builder: LatLngBounds.Builder = LatLngBounds.Builder()
-            builder.include(departureLatLng)
-            builder.include(arrivalLatLng)
+                val builder: LatLngBounds.Builder = LatLngBounds.Builder()
+                builder.include(departureLatLng)
+                builder.include(arrivalLatLng)
 
-            val bounds = builder.build()
-            val width = resources.displayMetrics.widthPixels
-            val height = resources.displayMetrics.heightPixels / 2
-            val padding = (width * 0.20).toInt()
-            mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,width, height, padding)) }
+                val bounds = builder.build()
+                val width = resources.displayMetrics.widthPixels
+                val height = resources.displayMetrics.heightPixels / 2
+                val padding = (width * 0.20).toInt()
+                mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,width, height, padding)) }
+
+            }
         }
     }
 
@@ -149,12 +157,14 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         }
     }
 
-
-
     override fun onMyLocationButtonClick(): Boolean {
         return false
     }
 
+}
 
-
+inline fun <T: Any> ifLet(vararg elements: T?, closure: (List<T>) -> Unit) {
+    if (elements.all { it != null }) {
+        closure(elements.filterNotNull())
+    }
 }

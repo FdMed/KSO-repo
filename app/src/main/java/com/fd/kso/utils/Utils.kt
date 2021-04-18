@@ -14,6 +14,16 @@ object Utils {
     const val BASE_URL = "https://run.mocky.io/v3/"
     const val ITEM_BUNDLE_ARG = "ITEM_BUNDLE_KEY_ARG"
 
+
+    /**
+     * Cette methode permet le formattage
+     * et la mise en forme de notre liste d'éléments
+     * @param sapannableText c'est le text d'entree à spanner
+     * @param location prend le nom de position de départ/arrivée
+     * @param date prend les valeurs date départ/arrivée
+     * @param time prend les valeurs temps départ/arrivée
+     * @return un text spanné pret pour l'affichage
+     */
     fun spanText(sapannableText : String, location : String, date: String , time: String) : SpannableString {
         val spannable = SpannableString(sapannableText)
         spannable.setSpan(

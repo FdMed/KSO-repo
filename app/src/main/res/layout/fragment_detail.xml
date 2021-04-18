@@ -206,11 +206,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_error"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
+
+                    <ImageView
+                        android:id="@+id/image_error_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:src="@drawable/ic_error"
                         android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
-                        app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
+                        app:layout_constraintTop_toBottomOf="@+id/duration_value" />
 
                     <androidx.constraintlayout.widget.Barrier
                         android:id="@+id/vertical_barrier"
