@@ -89,7 +89,7 @@ class MainFragment : Fragment() {
     }
 
     private fun displayError(errorMessage: String) {
-        Toast.makeText(activity?.applicationContext, errorMessage, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity?.applicationContext, resources.getString(R.string.error_message), Toast.LENGTH_LONG).show()
     }
 
     private fun displayProgressBar(visible: Boolean) {

@@ -26,8 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 
 
-class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
-        GoogleMap.OnMyLocationClickListener {
+class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener{
 
     private val REQUEST_LOCATION_PERMISSION = 1
     private var _binding: FragmentDetailBinding? = null
@@ -49,7 +48,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         myItem = arguments?.getParcelable<MyItem>(Utils.ITEM_BUNDLE_ARG)
-
         val mapFragment = childFragmentManager.findFragmentById(R.id.myMap) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
@@ -58,7 +56,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupUI()
     }
 
@@ -70,22 +67,17 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         binding.arrivalLocationInfos.text =
                 getString(R.string.departure_value,myItem?.arrival?.getFormattedDate(),myItem?.arrival?.getFormattedTime())
 
-        if (myItem?.details?.duration_second != null ) {
+        if (myItem?.details?.duration_second != null )
             binding.durationValue.text = getString(R.string.duration_inline, myItem?.details?.getFormattedDuration())
-        }
-        else {
-            binding.imageError.visibility = View.VISIBLE
-        }
+        else binding.imageError.visibility = View.VISIBLE
 
         binding.distanceValue.text = myItem?.details?.getDistanceKM()
         binding.co2Value.text = myItem?.details?.co2_emission.toString()
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.setOnMyLocationButtonClickListener(this)
-        mMap.setOnMyLocationClickListener(this)
         enableLocation()
     }
 
@@ -112,7 +104,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
             val height = resources.displayMetrics.heightPixels / 2
             val padding = (width * 0.20).toInt()
             mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,width, height, padding)) }
-
         }
     }
 
@@ -133,15 +124,19 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     @SuppressLint("MissingPermission")
     private fun enableLocation() {
-        if (isPermissionGranted()) mMap.isMyLocationEnabled = true
+        if (isPermissionGranted()) {
+            mMap.isMyLocationEnabled = true
+            setupMarkers()
+
+        }
         else {
-            ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+            requestPermissions(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_LOCATION_PERMISSION
             )
+            setupMarkers()
+
         }
-        setupMarkers()
     }
 
     override fun onRequestPermissionsResult(
@@ -160,8 +155,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         return false
     }
 
-    override fun onMyLocationClick(location: Location) {
-    }
 
 
 }
