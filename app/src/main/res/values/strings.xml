@@ -7,5 +7,12 @@
 
     <string name="departure_title">Départ</string>
     <string name="arrival_title">Arrivée</string>
+    <string name="detail_title">Détails</string>
+    <string name="duration_title">Durée</string>
+    <string name="distance">Distance</string>
+    <string name="co_2">CO2</string>
+
+    <string name="departure_value">Le %1$s à %2$s</string>
+
 
 </resources>

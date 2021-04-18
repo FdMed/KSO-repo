@@ -56,6 +56,24 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupUI()
+    }
+
+    private fun setupUI() {
+        binding.departLocation.text = myItem?.departure?.place
+        binding.departLocationInfos.text = myItem?.departure?.datetime
+        binding.arrivalLocation.text = myItem?.arrival?.place
+        binding.arrivalLocationInfos.text = myItem?.arrival?.datetime
+
+        binding.durationValue.text = myItem?.details?.duration_second.toString()
+        binding.distanceValue.text = myItem?.details?.distance_m.toString()
+        binding.co2Value.text = myItem?.details?.co2_emission.toString()
+
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.setOnMyLocationButtonClickListener(this)
