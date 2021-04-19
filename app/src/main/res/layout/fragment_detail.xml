@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <fragment
+        android:id="@+id/myMap"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero_dim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/middle"
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".5" />
+
+    <ScrollView
+        android:layout_width="@dimen/zero_dim"
+        android:layout_height="@dimen/zero_dim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/p_dark"
+        app:layout_constraintTop_toBottomOf="@+id/middle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/primary_margin"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/depart_card"
+                android:layout_width="@dimen/zero_dim"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/primary_margin"
+                android:layout_marginTop="@dimen/primary_margin"
+                app:cardCornerRadius="@dimen/primary_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/departure_title_id"
+                        style="@style/location_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/departure_title"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/depart_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/location_text" />
+                    <TextView
+                        android:id="@+id/depart_location_infos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/location_infos" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/arrival_card"
+                android:layout_width="@dimen/zero_dim"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/primary_margin"
+                android:layout_marginTop="@dimen/primary_margin"
+                app:cardCornerRadius="@dimen/primary_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/depart_card">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/arrival_title_id"
+                        style="@style/location_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/arrival_title"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/arrival_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/location_text" />
+                    <TextView
+                        android:id="@+id/arrival_location_infos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/location_infos" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/details_card"
+                android:layout_width="@dimen/zero_dim"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/primary_margin"
+                android:layout_marginTop="@dimen/primary_margin"
+                app:cardCornerRadius="@dimen/primary_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arrival_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/details_title_id"
+                        style="@style/location_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_title"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/duration_title_id"
+                        style="@style/location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/duration_title"
+
+                        app:layout_constraintBaseline_toBaselineOf="@+id/duration_value"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/distance"
+                        style="@style/location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distance"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/distance_value"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/co2_emission"
+                        style="@style/location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/co_2"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/co_2_value"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/duration_value"
+                        android:layout_width="@dimen/zero_dim"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/primary_margin"
+                        android:layout_marginTop="@dimen/primary_margin"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
+
+                    <TextView
+                        android:id="@+id/distance_value"
+                        android:layout_width="@dimen/zero_dim"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/primary_margin"
+                        android:layout_marginTop="@dimen/primary_margin"
+                        android:layout_marginEnd="@dimen/primary_margin"
+                        app:layout_constraintBottom_toTopOf="@+id/co_2_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/duration_value" />
+
+                    <TextView
+                        android:id="@+id/co_2_value"
+                        android:layout_width="@dimen/zero_dim"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/primary_margin"
+                        android:layout_marginTop="@dimen/primary_margin"
+                        android:layout_marginEnd="@dimen/primary_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/distance_value" />
+
+                    <ImageView
+                        android:id="@+id/image_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_error"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/details_title_id" />
+
+                    <ImageView
+                        android:id="@+id/image_error_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_error"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/vertical_barrier"
+                        app:layout_constraintTop_toBottomOf="@+id/duration_value" />
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/vertical_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="end"
+                        app:constraint_referenced_ids="duration_title_id,co2_emission,distance"
+                        tools:layout_editor_absoluteX="395dp" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

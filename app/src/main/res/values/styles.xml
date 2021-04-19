@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="list_item_key">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="duration_text">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/primary_margin</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="location_title">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/primary_margin</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="location_text">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/primary_margin</item>
+        <item name="android:layout_marginRight">@dimen/primary_margin</item>
+        <item name="android:layout_marginBottom">@dimen/primary_margin</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="location_infos">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/primary_margin</item>
+        <item name="android:layout_marginRight">@dimen/primary_margin</item>
+        <item name="android:layout_marginBottom">@dimen/primary_margin</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+</resources>

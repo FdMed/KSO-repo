@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment android:id="@+id/listFragment" android:name="com.fd.kso.ui.main.MainFragment"
+        android:label="fragment_list" tools:layout="@layout/fragment_main"
+        >
+        <action android:id="@+id/action_listFragment_to_detailInfoFragment"
+            app:destination="@id/detailedInfoFragment">
+            <argument
+                android:name= "ITEM_BUNDLE_KEY_ARG"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.fd.kso.data.model.MyItem" />
+        </action>
+    </fragment>
+
+
+    <fragment android:id="@+id/detailedInfoFragment" android:name="com.fd.kso.ui.detail.DetailFragment"
+        android:label="fragment_detailed_info" tools:layout="@layout/fragment_detail"/>
+</navigation>
