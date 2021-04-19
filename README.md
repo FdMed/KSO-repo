@@ -5,7 +5,7 @@
  
    <br/><br/>
     <div align = "center">
-         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_1.png?raw=true" width="330">&ensp;
+         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_1.png?raw=true" width="330">&ensp;&ensp;&ensp;
          <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_2.png?raw=true" width="330">
         </div>
 
