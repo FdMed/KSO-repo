@@ -9,12 +9,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fd.kso.MyApplication
 import com.fd.kso.R
 import com.fd.kso.data.model.MyItem
-import com.fd.kso.databinding.ActivityMainBinding
 import com.fd.kso.databinding.FragmentMainBinding
 import com.fd.kso.ui.adapters.MItemAdapter
 import com.fd.kso.utils.Status
@@ -38,7 +36,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -58,7 +56,7 @@ class MainFragment : Fragment() {
         adapter.onItemClick = { item ->
             val bundle = bundleOf(Utils.ITEM_BUNDLE_ARG to item)
             Navigation.findNavController(binding.root)
-                    .navigate(R.id.action_listFragment_to_detailInfoFragment,bundle)
+                    .navigate(R.id.action_listFragment_to_detailInfoFragment, bundle)
         }
         binding.recyclerView.adapter = adapter
     }
@@ -89,7 +87,8 @@ class MainFragment : Fragment() {
     }
 
     private fun displayError(errorMessage: String) {
-        Toast.makeText(activity?.applicationContext, resources.getString(R.string.error_message), Toast.LENGTH_LONG).show()
+        Toast.makeText(activity?.applicationContext, resources.getString(R.string.error_message), Toast.LENGTH_LONG)
+                .show()
     }
 
     private fun displayProgressBar(visible: Boolean) {
@@ -97,12 +96,9 @@ class MainFragment : Fragment() {
         else binding.listProgressBar.visibility = View.GONE
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
 }

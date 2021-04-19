@@ -8,6 +8,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
+@Suppress("unused")
 @Module
 abstract class ViewModelModule {
 
@@ -16,6 +17,7 @@ abstract class ViewModelModule {
     @ViewModelKey(MainViewmodel::class)
     abstract fun bindsMainViewModel(viewModel: MainViewmodel): ViewModel
 
+    @Binds
     abstract fun bindsViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

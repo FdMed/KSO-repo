@@ -14,27 +14,21 @@ object DateUtils {
 
     @SuppressLint("SimpleDateFormat")
     fun formatDateString(timeStamp: String) : String {
-        val x = SimpleDateFormat(DEFAULT_FORMAT_DATE)
-        val d = x.parse(timeStamp)
-        return formatDate(d,DEFAULT_FORMAT_DATE_WITHOUT_TIME)
+        val sdf = SimpleDateFormat(DEFAULT_FORMAT_DATE)
+        val date = sdf.parse(timeStamp)
+        return formatDate(date,DEFAULT_FORMAT_DATE_WITHOUT_TIME)
     }
 
     @SuppressLint("SimpleDateFormat")
     fun formatDateTimeString(timeStamp: String) : String {
-        val x = SimpleDateFormat(DEFAULT_FORMAT_DATE)
-        val d = x.parse(timeStamp)
-        return formatDate(d,DEFAULT_FORMAT_TIME_WITHOUT_DATE)
+        val sdf = SimpleDateFormat(DEFAULT_FORMAT_DATE)
+        val date = sdf.parse(timeStamp)
+        return formatDate(date,DEFAULT_FORMAT_TIME_WITHOUT_DATE)
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun formatDate(date: Date?, formatStr: String?): String {
-        return SimpleDateFormat(formatStr ?: DEFAULT_FORMAT_DATE).format(
-                date!!
-        )
-    }
+    fun formatDate(date: Date?, formatStr: String?): String = SimpleDateFormat(
+            formatStr ?: DEFAULT_FORMAT_DATE).format(date!!)
 
-    fun secondsTominutes(duration: Int) : String {
-       var converted =  (duration / 60)%60
-        return  converted.toString()
-    }
+    fun secondsTominutes(duration: Int) : String = ((duration / 60)%60).toString()
 }

@@ -6,12 +6,10 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.fd.kso.MyApplication
@@ -26,12 +24,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 
 
-class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener{
+class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
 
     private val REQUEST_LOCATION_PERMISSION = 1
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
-    var myItem : MyItem? = null
+    var myItem: MyItem? = null
     private lateinit var mMap: GoogleMap
 
 
@@ -62,19 +60,18 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
     private fun setupUI() {
         binding.departLocation.text = myItem?.departure?.place
         binding.departLocationInfos.text =
-                getString(R.string.departure_value,myItem?.departure?.getFormattedDate(),myItem?.departure?.getFormattedTime())
+                getString(R.string.departure_value, myItem?.departure?.getFormattedDate(), myItem?.departure?.getFormattedTime())
         binding.arrivalLocation.text = myItem?.arrival?.place
         binding.arrivalLocationInfos.text =
-                getString(R.string.departure_value,myItem?.arrival?.getFormattedDate(),myItem?.arrival?.getFormattedTime())
+                getString(R.string.departure_value, myItem?.arrival?.getFormattedDate(), myItem?.arrival?.getFormattedTime())
 
-        if (myItem?.details?.duration_second != null )
+        if (myItem?.details?.duration_second != null)
             binding.durationValue.text = getString(R.string.duration_inline, myItem?.details?.getFormattedDuration())
         else binding.imageError.visibility = View.VISIBLE
 
-        if (myItem?.details?.distance_m != null )
+        if (myItem?.details?.distance_m != null)
             binding.distanceValue.text = myItem?.details?.getDistanceKM()
         else binding.imageError2.visibility = View.VISIBLE
-
 
         binding.co2Value.text = myItem?.details?.co2_emission.toString()
     }
@@ -87,8 +84,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     private fun setupMarkers() {
         myItem?.run {
-            ifLet(departure.coord?.lat,departure.coord?.lon, arrival.coord?.lat, arrival.coord?.lon) {
-                (depLat, depLon, arrLat, arrLon) ->
+            Utils.myIfLet(departure.coord?.lat, departure.coord?.lon, arrival.coord?.lat, arrival.coord?.lon) { (depLat, depLon, arrLat, arrLon) ->
                 val departureLatLng = LatLng(depLat, depLon)
                 mMap.addMarker(MarkerOptions()
                         .position(departureLatLng)
@@ -109,7 +105,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 val width = resources.displayMetrics.widthPixels
                 val height = resources.displayMetrics.heightPixels / 2
                 val padding = (width * 0.20).toInt()
-                mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,width, height, padding)) }
+                mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)) }
 
             }
         }
@@ -124,7 +120,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         }
     }
 
-    private fun isPermissionGranted() : Boolean {
+    private fun isPermissionGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -135,15 +131,12 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
         if (isPermissionGranted()) {
             mMap.isMyLocationEnabled = true
             setupMarkers()
-
-        }
-        else {
+        } else {
             requestPermissions(
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_LOCATION_PERMISSION
             )
             setupMarkers()
-
         }
     }
 
@@ -163,8 +156,3 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
 }
 
-inline fun <T: Any> ifLet(vararg elements: T?, closure: (List<T>) -> Unit) {
-    if (elements.all { it != null }) {
-        closure(elements.filterNotNull())
-    }
-}

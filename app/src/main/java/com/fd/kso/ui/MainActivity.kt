@@ -3,7 +3,6 @@ package com.fd.kso.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.fd.kso.MyApplication
-import com.fd.kso.R
 import com.fd.kso.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -24,7 +24,7 @@ object Utils {
      * @param time prend les valeurs temps départ/arrivée
      * @return un text spanné pret pour l'affichage
      */
-    fun spanText(sapannableText : String, location : String, date: String , time: String) : SpannableString {
+    fun spanText(sapannableText: String, location: String, date: String, time: String): SpannableString {
         val spannable = SpannableString(sapannableText)
         spannable.setSpan(
                 StyleSpan(Typeface.BOLD),
@@ -33,19 +33,25 @@ object Utils {
 
         spannable.setSpan(
                 StyleSpan(Typeface.BOLD),
-                spannable.indexOf(date),  spannable.indexOf(date) + date.length,
+                spannable.indexOf(date), spannable.indexOf(date) + date.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         spannable.setSpan(
                 ForegroundColorSpan(Color.parseColor("#007992")),
-                spannable.indexOf(time),  spannable.indexOf(time) + time.length,
+                spannable.indexOf(time), spannable.indexOf(time) + time.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannable.setSpan(
                 StyleSpan(Typeface.BOLD),
-                spannable.indexOf(time),  spannable.indexOf(time) + time.length,
+                spannable.indexOf(time), spannable.indexOf(time) + time.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         return spannable
+    }
+
+    inline fun <T : Any> myIfLet(vararg elements: T?, closure: (List<T>) -> Unit) {
+        if (elements.all { it != null }) {
+            closure(elements.filterNotNull())
+        }
     }
 
 }
