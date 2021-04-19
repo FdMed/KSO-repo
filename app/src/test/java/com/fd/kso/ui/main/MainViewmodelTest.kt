@@ -9,6 +9,7 @@ import com.fd.kso.testUtlis.TestUtil
 import com.fd.kso.utils.Resource
 import com.fd.kso.utils.Status
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -55,14 +56,21 @@ class MainViewmodelTest {
     @Test
     fun `Returned value is succes and list is not empty`() {
         coroutineScope.runBlockingTest {
-            val mFlow  = flow <Resource<List<MyItem>>>{ emit(Resource.success(TestUtil.listOfItems)) }
+            val mFlow  = flow <Resource<List<MyItem>>>{
+                emit(Resource.loading(null))
+                delay(8)
+                emit(Resource.success(TestUtil.listOfItems))
+            }
 
             `when`(locationRepository.allItems).thenReturn(mFlow)
-
             val livedate =  viewModel.allItems
             livedate.observeForever(itemsObserver)
 
             verify(itemsObserver, times(2)).onChanged(captor.capture())
+            assertEquals(Status.LOADING, captor.value.status)
+
+            coroutineScope.advanceTimeBy(8)
+            verify(itemsObserver, times(3)).onChanged(captor.capture())
 
             assertEquals(Status.SUCCESS, captor.value.status)
 
@@ -76,14 +84,22 @@ class MainViewmodelTest {
     @Test
     fun `Test if catching error`() {
         coroutineScope.runBlockingTest {
-            val mFlow  = flow <Resource<List<MyItem>>>{ emit(Resource.error(null,TestUtil.errorMessage)) }
+            val mFlow  = flow <Resource<List<MyItem>>>{
+                emit(Resource.loading(null))
+                delay(8)
+                emit(Resource.error(null,TestUtil.errorMessage))
+            }
 
             `when`(locationRepository.allItems).thenReturn(mFlow)
-
             val livedate =  viewModel.allItems
             livedate.observeForever(itemsObserver)
 
             verify(itemsObserver, times(2)).onChanged(captor.capture())
+            assertEquals(Status.LOADING, captor.value.status)
+
+            coroutineScope.advanceTimeBy(8)
+
+            verify(itemsObserver, times(3)).onChanged(captor.capture())
 
             assertEquals(Status.ERROR, captor.value.status)
 
