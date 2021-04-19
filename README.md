@@ -5,8 +5,8 @@
  
    <br/><br/>
     <div align = "center">
-         <img src = "https://github.com/FdMed/KSO-repo/tree/master/screenshots/screen_1.png?raw=true" width="330">
-         <img src = "https://github.com/FdMed/KSO-repo/tree/master/screenshots/screen_2.png?raw=true" width="330">
+         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_1.png?raw=true" width="330">
+         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_2.png?raw=true" width="330">
         </div>
 
 
