@@ -2,6 +2,7 @@
 ### Simple App qui contient un écran qui affiche une liste d'éléments récuprés depuis un remote API et un écran détail qui contient le détail de chaque element et une map google avec des marqueurs.
 
  # Overview:
+ 
     <br/><br/>
     <div align = "center">
          <img src = "https://github.com/FdMed/KSO-repo/tree/master/screenshots/screen_1.png?raw=true" width="330">
