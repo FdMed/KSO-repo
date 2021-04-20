@@ -2,10 +2,11 @@
 ### Simple App qui contient un écran qui affiche une liste d'éléments récuprés depuis un remote API et un écran détail qui contient le détail de chaque element et une map google avec des marqueurs.
 
  # Overview:
-    <br/><br/>
+
+   <br/><br/>
     <div align = "center">
-         <img src = "https://github.com/FdMed/KSO-repo/tree/master/screenshots/screen_1.png?raw=true" width="330">
-         <img src = "https://github.com/FdMed/KSO-repo/tree/master/screenshots/screen_2.png?raw=true" width="330">
+         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_1.png?raw=true" width="330">&ensp;&ensp;&ensp;
+         <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_2.png?raw=true" width="330">
         </div>
 
 
@@ -24,25 +25,23 @@
 # Technologies et libraries:
 
 
-    * ### __Model__
+   * ### __Model__
 
     	* ### __Network__<br/>
-    	     __Retrofit 2__ <br/>
-    		– récupère les données depuis le serveur vers les class data
+    	   __Retrofit 2__ <br/>
+    		      – récupère les données depuis le serveur vers les class data
+    	   __Gson__ <br/>
+    		      – converte json aux objets
 
-
-    	     __GSON__ <br/>
-    		– converte json aux objets
-
-        * __Coroutines__ <br/>
+     * ### __Coroutines__ <br/>
             – gère les requettes réseau asynchrone via flow au lieu des callbacks<br/>
             – fournit des opèrations asynchrones légères
 
-    * ### __ViewModel__
+   * ### __ViewModel__
        * __LiveData__ <br/>
           – implément le pattern observer pour les interactions avec le view
 
-    * ### __View__
+   * ### __View__
        * __Fragments__ <br/>
          – display interactif
 
@@ -54,7 +53,7 @@
          – pop les destinations depuis le backstack
          – argument - safe args transfère
 
-    * ### __Tests unitaires__
+   * ### __Tests unitaires__
        * __JUnit__ <br/>
          – Pour affectuer les diffrents assertions
 
@@ -63,13 +62,14 @@
 
 ## tout les outils: <br/>
 
-         * Kotlin
-         * Android X
-         * Android Jetpack
-         * Dagger 2
-         * Kotlin Coroutines
-         * Retrofit 2
-         * Gson
-         * JUnit
-         * Mockito
+   * Kotlin
+   * Android X
+   * Android Jetpack
+   * Dagger 2
+   * Kotlin Coroutines
+   * Retrofit 2
+   * Gson
+   * JUnit
+   * Mockito
+   * Google maps
 
