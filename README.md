@@ -32,7 +32,8 @@
     		      – récupère les données depuis le serveur vers les class data    
     	   __Gson__ <br/>
     		      – converte json aux objets
-        __Coroutines__ <br/>
+            
+     * ### __Coroutines__ <br/>
             – gère les requettes réseau asynchrone via flow au lieu des callbacks<br/>
             – fournit des opèrations asynchrones légères
 
