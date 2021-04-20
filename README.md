@@ -2,7 +2,7 @@
 ### Simple App qui contient un écran qui affiche une liste d'éléments récuprés depuis un remote API et un écran détail qui contient le détail de chaque element et une map google avec des marqueurs.
 
  # Overview:
-
+ 
    <br/><br/>
     <div align = "center">
          <img src = "https://github.com/FdMed/KSO-repo/blob/master/screenshots/screen_1.png?raw=true" width="330">&ensp;&ensp;&ensp;
@@ -29,7 +29,7 @@
 
     	* ### __Network__<br/>
     	   __Retrofit 2__ <br/>
-    		      – récupère les données depuis le serveur vers les class data
+    		      – récupère les données depuis le serveur vers les class data    
     	   __Gson__ <br/>
     		      – converte json aux objets
 
