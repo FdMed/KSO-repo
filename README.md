@@ -33,7 +33,7 @@
     	   __Gson__ <br/>
     		      – converte json aux objets
         __Coroutines__ <br/>
-            – gère les requettes réseau asynchrone via flow au lieu des callbacks
+            – gère les requettes réseau asynchrone via flow au lieu des callbacks<br/>
             – fournit des opèrations asynchrones légères
 
    * ### __ViewModel__
