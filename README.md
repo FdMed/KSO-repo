@@ -71,4 +71,5 @@
    * Gson
    * JUnit
    * Mockito
+   * Google maps
 
