@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
@@ -101,11 +102,21 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                 builder.include(departureLatLng)
                 builder.include(arrivalLatLng)
 
-                val bounds = builder.build()
-                val width = resources.displayMetrics.widthPixels
-                val height = resources.displayMetrics.heightPixels / 2
-                val padding = (width * 0.20).toInt()
-                mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)) }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    val bounds = builder.build()
+                    val width = resources.displayMetrics.widthPixels
+                    val height = resources.displayMetrics.heightPixels / 2
+                    val padding = (width * 0.20).toInt()
+                    mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)) }
+                } else {
+                    val bounds = builder.build()
+                    val width = resources.displayMetrics.widthPixels / 2
+                    val height = resources.displayMetrics.heightPixels
+                    val padding = (width * 0.20).toInt()
+                    mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)) }
+                }
+
+
 
             }
         }
