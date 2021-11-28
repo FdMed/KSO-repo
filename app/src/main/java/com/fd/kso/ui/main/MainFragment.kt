@@ -23,10 +23,11 @@ class MainFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: MainViewmodel
+    private lateinit var adapter: MItemAdapter
+
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: MItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,19 +39,20 @@ class MainFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?,
     ): View {
+
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         setupUI()
         setupObservers()
-
     }
 
     private fun setupUI() {
+
         binding.recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
         adapter = MItemAdapter(arrayListOf())
         adapter.onItemClick = { item ->
@@ -62,6 +64,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setupObservers() {
+
         viewModel.allItems.observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
@@ -80,6 +83,7 @@ class MainFragment : Fragment() {
     }
 
     private fun retrieveList(items: List<MyItem>) {
+
         adapter.apply {
             addItems(items)
             notifyDataSetChanged()

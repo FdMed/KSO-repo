@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Arrival(val place : String, val datetime: String, val coord: Coordinate?) : Parcelable {
+
     fun getFormattedDate():String = DateUtils.formatDateString(datetime)
     fun getFormattedTime():String = DateUtils.formatDateTimeString(datetime)
 }

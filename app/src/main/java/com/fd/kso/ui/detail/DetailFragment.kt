@@ -27,12 +27,13 @@ import com.google.android.gms.maps.model.*
 
 class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
 
-    private val REQUEST_LOCATION_PERMISSION = 1
     private var _binding: FragmentDetailBinding? = null
-    private val binding get() = _binding!!
     var myItem: MyItem? = null
-    private lateinit var mMap: GoogleMap
 
+    private val REQUEST_LOCATION_PERMISSION = 1
+    private val binding get() = _binding!!
+
+    private lateinit var mMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
             container: ViewGroup?,
             savedInstanceState: Bundle?,
     ): View {
+
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         myItem = arguments?.getParcelable<MyItem>(Utils.ITEM_BUNDLE_ARG)
@@ -59,6 +61,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
     }
 
     private fun setupUI() {
+
         binding.departLocation.text = myItem?.departure?.place
         binding.departLocationInfos.text =
                 getString(R.string.departure_value, myItem?.departure?.getFormattedDate(), myItem?.departure?.getFormattedTime())
@@ -78,31 +81,43 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+
         mMap = googleMap
         mMap.setOnMyLocationButtonClickListener(this)
         enableLocation()
     }
 
     private fun setupMarkers() {
+
         myItem?.run {
-            Utils.myIfLet(departure.coord?.lat, departure.coord?.lon, arrival.coord?.lat, arrival.coord?.lon) { (depLat, depLon, arrLat, arrLon) ->
+
+            Utils.myIfLet(departure.coord?.lat,
+                departure.coord?.lon,
+                arrival.coord?.lat,
+                arrival.coord?.lon
+            ) { (depLat, depLon, arrLat, arrLon) ->
+
                 val departureLatLng = LatLng(depLat, depLon)
-                mMap.addMarker(MarkerOptions()
+                val arrivalLatLng = LatLng(arrLat, arrLon)
+
+                mMap.run {
+
+                    addMarker(MarkerOptions()
                         .position(departureLatLng)
                         .title(getString(R.string.departure_title))
                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_departure_marker)))
 
-                val arrivalLatLng = LatLng(arrLat, arrLon)
-                mMap.addMarker(MarkerOptions()
+                    addMarker(MarkerOptions()
                         .position(arrivalLatLng)
                         .title(getString(R.string.arrival_title))
                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_arrival_marker)))
+                }
 
                 val builder: LatLngBounds.Builder = LatLngBounds.Builder()
                 builder.include(departureLatLng)
                 builder.include(arrivalLatLng)
 
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                     val bounds = builder.build()
                     val width = resources.displayMetrics.widthPixels
                     val height = resources.displayMetrics.heightPixels / 2
@@ -115,8 +130,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
                     val padding = (width * 0.20).toInt()
                     mMap.setOnMapLoadedCallback { mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)) }
                 }
-
-
 
             }
         }
@@ -139,6 +152,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
 
     @SuppressLint("MissingPermission")
     private fun enableLocation() {
+
         if (isPermissionGranted()) {
             mMap.isMyLocationEnabled = true
             setupMarkers()
@@ -156,6 +170,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBut
             permissions: Array<String>,
             grantResults: IntArray,
     ) {
+
         if (requestCode == REQUEST_LOCATION_PERMISSION && grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
             enableLocation()
         }

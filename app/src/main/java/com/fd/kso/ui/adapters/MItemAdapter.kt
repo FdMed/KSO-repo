@@ -30,9 +30,11 @@ class MItemAdapter(private val items: ArrayList<MyItem>) : RecyclerView.Adapter<
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+
         val item = items[position]
         holder.binding.departure.text = parseDepartureData(holder, item, ::spanText)
         holder.binding.arrival.text = parseArrivalData(holder, item, ::spanText)
+
         if (item.details.duration_second != null) {
             holder.binding.duration.visibility = View.VISIBLE
             holder.binding.errorTime.visibility = View.GONE
@@ -41,6 +43,7 @@ class MItemAdapter(private val items: ArrayList<MyItem>) : RecyclerView.Adapter<
             holder.binding.duration.visibility = View.GONE
             holder.binding.errorTime.visibility = View.VISIBLE
         }
+
         holder.binding.root.setOnClickListener { onItemClick?.invoke(item) }
     }
 
@@ -52,9 +55,15 @@ class MItemAdapter(private val items: ArrayList<MyItem>) : RecyclerView.Adapter<
     }
 
     private fun parseDepartureData(
-            holder: DataViewHolder, item: MyItem,
-            spanText: (sapannableText: String, location: String, date: String, time: String) -> SpannableString,
+            holder: DataViewHolder,
+            item: MyItem,
+            spanText: (sapannableText: String,
+                       location: String,
+                       date: String,
+                       time: String
+            ) -> SpannableString,
     ): SpannableString {
+
         val departureToSpan = holder.itemView.context.getString(R.string.departure,
                 item.departure.place,
                 item.departure.getFormattedDate(),
@@ -63,16 +72,24 @@ class MItemAdapter(private val items: ArrayList<MyItem>) : RecyclerView.Adapter<
     }
 
     private fun parseArrivalData(
-            holder: DataViewHolder, item: MyItem,
-            spanText: (sapannableText: String, location: String, date: String, time: String) -> SpannableString,
+            holder: DataViewHolder,
+            item: MyItem,
+            spanText: (sapannableText: String,
+                       location: String,
+                       date: String,
+                       time: String
+            ) -> SpannableString,
     ): SpannableString {
 
         val departureToSpan = holder.itemView.context.getString(R.string.arrival,
                 item.arrival.place,
                 item.arrival.getFormattedDate(),
                 item.arrival.getFormattedTime())
-        return spanText(departureToSpan, item.arrival.place, item.arrival.getFormattedDate(), item.arrival.getFormattedTime())
+        return spanText(departureToSpan,
+            item.arrival.place,
+            item.arrival.getFormattedDate(),
+            item.arrival.getFormattedTime()
+        )
     }
-
 
 }

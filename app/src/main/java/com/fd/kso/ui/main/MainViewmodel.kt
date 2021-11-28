@@ -13,6 +13,7 @@ import javax.inject.Inject
 class MainViewmodel @Inject constructor(private val locationRepository: LocationRepository) : ViewModel() {
 
     val allItems = liveData <Resource<List<MyItem>>> {
+
         locationRepository.allItems
                 .onStart { emit(Resource.loading(null)) }
                 .catch { exception -> emit(Resource.error(null,message = exception.message ?: "An error occured")) }

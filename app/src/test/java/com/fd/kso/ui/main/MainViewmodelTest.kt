@@ -55,6 +55,7 @@ class MainViewmodelTest {
 
     @Test
     fun `Returned value is succes and list is not empty`() {
+
         coroutineScope.runBlockingTest {
             val mFlow  = flow <Resource<List<MyItem>>>{
                 emit(Resource.loading(null))
@@ -76,13 +77,14 @@ class MainViewmodelTest {
 
             assertNotNull(captor.value.data)
             assertEquals(TestUtil.listOfItems, captor.value.data)
-            assertEquals(TestUtil.listOfItems.get(0).id, captor.value.data?.get(0)?.id)
+            assertEquals(TestUtil.listOfItems[0].id, captor.value.data?.get(0)?.id)
 
         }
     }
 
     @Test
     fun `Test if catching error`() {
+
         coroutineScope.runBlockingTest {
             val mFlow  = flow <Resource<List<MyItem>>>{
                 emit(Resource.loading(null))

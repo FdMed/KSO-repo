@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object Utils {
+
     const val BASE_URL = "https://run.mocky.io/v3/"
     const val ITEM_BUNDLE_ARG = "ITEM_BUNDLE_KEY_ARG"
 

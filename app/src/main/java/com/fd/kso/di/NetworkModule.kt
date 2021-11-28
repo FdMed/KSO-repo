@@ -10,12 +10,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class NetworkModule {
+
     @Provides
     @Reusable
     internal fun provideApiService(retrofit: Retrofit): ApiService {
         return  retrofit.create(ApiService::class.java)
     }
-
 
     @Provides
     @Reusable

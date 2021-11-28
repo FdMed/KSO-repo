@@ -28,8 +28,7 @@ import org.junit.runners.MethodSorters
 @RunWith(AndroidJUnit4::class)
 class MainFragmentTest {
 
-    val LIST_ITEM_IN_TEST = 0
-    val ITEMS_IN_TEST = UITestUtil.listOfItems[LIST_ITEM_IN_TEST]
+    private val LIST_ITEM_IN_TEST = 0
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -39,9 +38,13 @@ class MainFragmentTest {
 
     @Test
     fun test_navigation_to_main_screen() {
+
         val navController = TestNavHostController(
-            ApplicationProvider.getApplicationContext())
+            ApplicationProvider.getApplicationContext()
+        )
+
         val mainSenario = launchFragmentInContainer<MainFragment>()
+
         mainSenario.onFragment { fragment ->
             navController.setGraph(R.navigation.nav_graph)
             Navigation.setViewNavController(fragment.requireView(), navController)
@@ -50,20 +53,24 @@ class MainFragmentTest {
 
     @Test
     fun test_if_fragment_main_is_visible() {
+
         onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
         onView(withId(R.id.list_progress_bar)).check(matches(isDisplayed()))
     }
 
     @Test
     fun test_item_selected_and_detail_is_visible() {
-        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()));
-        onView(withId(R.id.recycler_view))
-            .perform(actionOnItemAtPosition<MItemAdapter.DataViewHolder>(LIST_ITEM_IN_TEST, click()))
+
+        onView(withId(R.id.recycler_view)).run {
+            check(matches(isDisplayed()))
+            perform(actionOnItemAtPosition<MItemAdapter.DataViewHolder>(LIST_ITEM_IN_TEST, click()))
+        }
         onView(withId(R.id.myMap)).check(matches(isDisplayed()))
     }
 
     @Test
     fun test_backNavigation_to_main_fragment() {
+
         onView(withId(R.id.recycler_view))
             .perform(actionOnItemAtPosition<MItemAdapter.DataViewHolder>(LIST_ITEM_IN_TEST, click()))
         onView(withId(R.id.myMap)).check(matches(isDisplayed()))

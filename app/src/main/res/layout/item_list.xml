@@ -12,26 +12,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
+
             <TextView
                 android:id="@+id/departure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/list_item_key"
                 android:layout_toStartOf="@+id/duration"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                style="@style/list_item_key" />
+
             <TextView
                 android:id="@+id/arrival"
                 android:layout_below="@+id/departure"
-                style="@style/list_item_key"
                 android:layout_width="match_parent"
                 android:layout_toStartOf="@+id/duration"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                style="@style/list_item_key" />
 
             <TextView
                 android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/duration_text" />
+
             <ImageView
                 android:id="@+id/error_time"
                 android:layout_width="wrap_content"
@@ -39,6 +42,7 @@
                 android:src="@drawable/ic_error"
                 android:visibility="gone"
                 style="@style/duration_text" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

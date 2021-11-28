@@ -9,11 +9,10 @@ import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(private val apiService: ApiService) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewmodel::class.java)) {
             return MainViewmodel(LocationRepository(apiService)) as T
         }
-        throw IllegalArgumentException("Unknown class name")
-    }
+        throw IllegalArgumentException("Unknown class name")    }
 
 }

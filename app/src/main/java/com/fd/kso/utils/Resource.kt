@@ -1,7 +1,7 @@
 package com.fd.kso.utils
 
 /**
- * Cette class encapsule les donnée renvoyé
+ * Cette class encapsule les données renvoyés
  * par les services et l'état des réponses
  * @param status prend les valeurs succes/loading/error
  * @param data prend les données retourné par le service

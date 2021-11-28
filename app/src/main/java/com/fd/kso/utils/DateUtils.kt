@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtils {
+
     const val DEFAULT_FORMAT_DATE_WITHOUT_TIME = "dd-MM-yyyy"
     const val DEFAULT_FORMAT_TIME_WITHOUT_DATE = "HH:mm"
     const val DEFAULT_FORMAT_DATE = "yyyyMMdd'T'HHmmss"

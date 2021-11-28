@@ -9,6 +9,7 @@ import dagger.Component
 
 @Component(modules = [NetworkModule::class, ViewModelModule::class])
 interface AppComponent {
+
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent

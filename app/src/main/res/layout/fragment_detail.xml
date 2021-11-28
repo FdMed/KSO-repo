@@ -11,11 +11,11 @@
         android:id="@+id/myMap"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero_dim"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/middle"
-        app:layout_constraintTop_toTopOf="parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/middle"
@@ -27,11 +27,11 @@
     <ScrollView
         android:layout_width="@dimen/zero_dim"
         android:layout_height="@dimen/zero_dim"
+        android:background="@color/p_dark"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/p_dark"
         app:layout_constraintTop_toBottomOf="@+id/middle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,17 +50,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/departure_title_id"
-                        style="@style/location_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/departure_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        style="@style/location_title" />
 
                     <TextView
                         android:id="@+id/depart_location"
@@ -86,28 +88,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/depart_card">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/arrival_title_id"
-                        style="@style/location_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/arrival_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        style="@style/location_title" />
 
                     <TextView
                         android:id="@+id/arrival_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/location_text" />
+
                     <TextView
                         android:id="@+id/arrival_location_infos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/location_infos" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -130,42 +136,41 @@
 
                     <TextView
                         android:id="@+id/details_title_id"
-                        style="@style/location_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/detail_title"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/location_title" />
 
                     <TextView
                         android:id="@+id/duration_title_id"
-                        style="@style/location_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/duration_title"
-
                         app:layout_constraintBaseline_toBaselineOf="@+id/duration_value"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/location_text" />
 
                     <TextView
                         android:id="@+id/distance"
-                        style="@style/location_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/distance"
                         app:layout_constraintBaseline_toBaselineOf="@+id/distance_value"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/location_text" />
 
                     <TextView
                         android:id="@+id/co2_emission"
-                        style="@style/location_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/co_2"
                         app:layout_constraintBaseline_toBaselineOf="@+id/co_2_value"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/location_text" />
 
                     <TextView
                         android:id="@+id/duration_value"
